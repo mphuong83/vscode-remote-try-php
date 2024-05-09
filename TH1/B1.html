@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sinh viên đăng ký môn học</title>
+    <link rel="stylesheet" href="B1.css">
+</head>
+<body>
+    <h1>Danh sách sinh viên đăng ký môn học</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>MSSV</th>
+                <th>Họ tên</th>
+                <th>Kỳ</th>
+                <th>Mã môn học</th>
+                <th>Tên môn học</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                // Kết nối CSDL
+                $conn = new PDO('mysql:host=localhost;dbname=pka_s', 'username', 'password');
+
+                // Lấy dữ liệu sinh viên đăng ký môn học
+                $sql = 'SELECT sv.MSSV, sv.HoTen, dk.Ky, mh.MaMH, mh.TenMH
+                        FROM SinhVien sv
+                        JOIN DangKy dk ON sv.MSSV = dk.MSSV
+                        JOIN MonHoc mh ON dk.MaMH = mh.MaMH';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $data = $stmt->fetchAll();
+
+                // Hiển thị dữ liệu sinh viên đăng ký môn học
+                foreach ($data as $row) {
+                    echo '<tr>';
+                    echo '<td>' . $row['MSSV'] . '</td>';
+                    echo '<td>' . $row['HoTen'] . '</td>';
+                    echo '<td>' . $row['Ky'] . '</td>';
+                    echo '<td>' . $row['MaMH'] . '</td>';
+                    echo '<td>' . $row['TenMH'] . '</td>';
+                    echo '</tr>';
+                }
+            ?>
+        </tbody>
+    </table>
+</body>
+</html>
