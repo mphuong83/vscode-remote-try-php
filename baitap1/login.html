@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,22 +22,19 @@
     />
   </head>
   <body>
-    <a href="../connect/connect.php" >  
+    <a href="./xulylogin.php" >  
     </a>
     <!-- from login -->
     <div class="login">
       <div class="login__container">
         <h1>Đăng Nhập</h1>
-        <form action="../login-signin/xulylogin.php" method="POST" >
+        <form action="./xulylogin.php" method="POST" >
           <h5>Họ Tên</h5>
-          <input type="text" name="email" class="input-login-username" />
+          <input type="text" name="name" class="input-login-username" />
           <h5>Password</h5>
-          <input type="password" name="mat_khau" class="input-login-password" />
+          <input type="password" name="pass" class="input-login-password" />
           <button type="submit" class="login__signInButton" name="dangnhap" >Đăng Nhập</button>
         </form>
-        <a href="../login-signin/signin.php" class="login__registerButton"
-          >Tạo tài khoản mới</a
-        >
       </div>
     </div>
   </body>
